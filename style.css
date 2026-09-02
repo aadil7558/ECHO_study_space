@@ -35,7 +35,7 @@
   section{position:relative;}
   body.no-scroll{overflow:hidden;}
 
-  /* ---------- watermark (fixed background, stays put on scroll) ---------- */
+  /* ---------- watermark (fixed background, stays put on scroll) --------- */
   .site-watermark{
     position:fixed; inset:0; z-index:0; pointer-events:none;
     display:flex; align-items:center; justify-content:center; overflow:hidden;
