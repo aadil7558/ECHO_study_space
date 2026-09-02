@@ -33,6 +33,7 @@
   img,svg{display:block; max-width:100%;}
   .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
   section{position:relative;}
+  body.no-scroll{overflow:hidden;}
 
   /* ---------- watermark (fixed background, stays put on scroll) ---------- */
   .site-watermark{
@@ -114,7 +115,7 @@
     display:block; padding:12px 6px; font-family:'Baloo 2'; font-weight:700;
     font-size:1.1rem; color:var(--green-deep); border-bottom:1px solid var(--cream-2);
   }
-  .drawer-whatsapp{justify-content:center; margin-top:auto;}
+  /*.drawer-whatsapp{justify-content:center; margin-top:auto;}
 
   /* ---------- hero ---------- */
   .hero{padding:74px 0 90px;}
@@ -239,6 +240,29 @@
     align-items:center; text-align:center; gap:16px; justify-content:center;
     transition:transform .25s ease, box-shadow .25s ease;
   }
+  /* ---------- hourly session selector ---------- */
+  .select-hour-btn{
+    display:flex; align-items:center; gap:6px; justify-content:center;
+    font-family:'Baloo 2'; font-weight:700; font-size:.92rem;
+    padding:10px 18px; border-radius:999px; border:1.5px solid var(--green-deep);
+    background:var(--white); color:var(--green-deep); cursor:pointer;
+    transition:background .2s ease, color .2s ease;
+  }
+  .select-hour-btn:hover{background:var(--green-soft);}
+  .select-hour-btn .chevron{transition:transform .2s ease; font-size:.8rem;}
+  .select-hour-btn.open .chevron{transform:rotate(180deg);}
+  .hour-options{display:flex; gap:8px; flex-wrap:wrap; justify-content:center;}
+  .hour-options[hidden]{display:none;}
+  .hour-btn{
+    font-family:'Baloo 2'; font-weight:700; font-size:.85rem;
+    padding:8px 14px; border-radius:999px; border:1.5px solid var(--green-soft);
+    background:var(--white); color:var(--green-mid); cursor:pointer;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .hour-btn:hover{border-color:var(--gold);}
+  .hour-btn.active{
+    background:var(--green-deep); border-color:var(--green-deep); color:var(--white);
+  }
   .plan-card:hover{transform:translateY(-6px); box-shadow:var(--shadow);}
   .plan-card.featured{border-color:var(--gold); box-shadow:0 16px 36px rgba(203,154,59,0.22);}
   .plan-tag{
@@ -285,7 +309,16 @@
 
   /* ---------- footer ---------- */
   footer{padding:25px 0 15px;}
-  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; margin-bottom:36px;}
+  .footer-community{
+    display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+    background:var(--green-deep); border-radius:var(--radius-md);
+    padding:26px 30px; margin-bottom:40px;
+  }
+  .footer-community-text strong{
+    display:block; font-family:'Baloo 2'; font-size:1.1rem; color:var(--white); margin-bottom:4px;
+  }
+  .footer-community-text p{color:rgba(255,255,255,0.72); font-size:.9rem; max-width:420px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr; gap:40px; margin-bottom:36px;}
   .footer-logo {
     display: flex;
     align-items: center;
@@ -319,9 +352,10 @@
     .feature-grid{grid-template-columns:repeat(2,1fr);}
     .facility-grid{grid-template-columns:repeat(2,1fr);}
     .plans-grid{grid-template-columns:repeat(2,1fr);}
-    .footer-grid{grid-template-columns:1fr 1fr;}
+    .footer-grid{grid-template-columns:1fr;}
     .nav-links{display:none;}
     .nav-whatsapp-desktop{display:none;}
+    .nav-instagram-desktop{display:none;}
     .menu-toggle{display:flex;}
   }
   @media (max-width: 560px){
