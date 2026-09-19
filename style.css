@@ -127,16 +127,24 @@
     padding:8px 16px; border-radius:999px; text-transform:uppercase; margin-bottom:22px;
   }
   .eyebrow::before{content:'✦'; color:var(--gold);}
-  .motto{font-size:clamp(2.1rem, 4.4vw, 3.4rem); font-weight:700; margin-bottom:6px;}
-  .motto-line{display:flex; align-items:baseline; gap:2px;}
+  .motto{font-family:'Baloo 2', sans-serif; font-size:clamp(2.1rem, 4.4vw, 3.4rem); font-weight:700; line-height: 1.1; color: var(--green-deep); margin:0px 0 32px;}
+  .motto-line{display:flex; align-items:baseline; gap:1px; }
   .motto-line .cap{
-    font-size:1.28em; font-weight:800; color:var(--gold-deep);
-    -webkit-text-stroke: 0.5px var(--gold-deep);
+    font-size:1.28em; font-weight:900; color:var(--gold-deep);
+    -webkit-text-stroke: 0.7px var(--gold-deep);
   }
-  .motto-sub{color:var(--ink-soft); font-size:1.08rem; max-width:520px; margin:22px 0 32px;}
+  .motto-sub{color:var(--ink-soft); font-size:1.08rem; max-width:520px; margin:0px 0 32px;}
   .hero-btns{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:20px;}
   .hero-note{display:flex; align-items:center; gap:10px; font-weight:700; color:var(--green-mid); font-size:.92rem;}
   .hero-note .dot{width:8px; height:8px; border-radius:50%; background:var(--gold); display:inline-block;}
+
+  .seo-location-heading {
+    font-family: 'Baloo 2', sans-serif;
+    font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+    font-weight: 800;
+    color: var(--gold-deep);
+    margin: 10px 0 05px;
+}
 
   /* hero illustration */
   .hero-art{position:relative;}
@@ -169,6 +177,7 @@
   @keyframes floaty{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
   .badge-float{animation:floaty 4.5s ease-in-out infinite;}
   .badge-float.b2{animation-delay:1.2s;}
+  
 
   /* ---------- feature strip ---------- */
   .features{padding:20px 0 70px;}
