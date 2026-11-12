@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seat Availability | ECHO Study Space Kozhikode</title>
+<meta name="description" content="Live seat availability at ECHO Study Space, Kozhikode. Visible to visitors within 5 km of the study centre.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://echostudyspace.in/seats.html">
+
+<link rel="icon" type="image/webp" sizes="64x64" href="images/echo_icon_64.webp">
+<link rel="apple-touch-icon" sizes="180x180" href="images/echo_icon_180.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="seats.css">
+</head>
+<body class="seats-body">
+
+<div class="site-watermark" aria-hidden="true">
+  <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="800" cy="360" r="260" fill="#CB9A3B" opacity="0.5"/>
+    <path d="M0 620 L180 460 L320 560 L480 380 L620 520 L760 340 L900 500 L1050 400 L1200 540 L1360 440 L1600 600 L1600 900 L0 900 Z" fill="#CB9A3B" opacity="0.35"/>
+    <path d="M0 700 L150 580 L300 660 L470 500 L640 640 L820 480 L980 630 L1150 520 L1320 660 L1470 560 L1600 680 L1600 900 L0 900 Z" fill="#CB9A3B" opacity="0.55"/>
+    <path d="M540 760 L740 420 L800 500 L860 380 L900 460 L1060 760 Z" fill="#CB9A3B" opacity="0.85"/>
+    <path d="M540 760 L740 420 L800 500 L820 470 L860 540 L780 760 Z" fill="#E9C170" opacity="0.55"/>
+    <path d="M860 380 L900 460 L940 420 L1060 760 L900 760 L860 540 Z" fill="#A9782A" opacity="0.7"/>
+    <path d="M0 800 L220 700 L400 780 L600 660 L820 800 L1040 680 L1260 790 L1450 700 L1600 780 L1600 900 L0 900 Z" fill="#A9782A" opacity="0.55"/>
+  </svg>
+</div>
+
+<!-- ============ NAV ============ -->
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="index.html#home" class="logo">
+        <svg class="blob" viewBox="0 0 48 48" fill="none">
+          <path d="M6 34l10-16 6 8 4-6 16 14z" fill="none" stroke="#CB9A3B" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>
+          <line x1="22" y1="16" x2="22" y2="8" stroke="#CB9A3B" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M22 8l6 2-6 3z" fill="#CB9A3B"/>
+          <path d="M6 36c10-6 26-6 36 0" stroke="#CB9A3B" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        </svg>
+        ECHO
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#facilities">Facilities</a></li>
+        <li><a href="index.html#plans">Plans</a></li>
+        <li><a href="seats.html" aria-current="page" class="nav-current">Seats</a></li>
+        <li><a href="index.html#visit">Visit</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a class="btn btn-outline btn-sm nav-instagram-desktop" href="https://instagram.com/echostudyspace" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn-gold btn-sm nav-whatsapp-desktop" href="https://wa.me/919778262436?text=Hi%20ECHO!%20I%27d%20like%20to%20know%20more.">WhatsApp Now</a>
+        <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ MOBILE DRAWER ============ -->
+<div class="drawer-overlay"></div>
+<aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true" inert>
+  <button class="drawer-close" aria-label="Close menu">&times;</button>
+  <ul class="drawer-links">
+    <li><a href="index.html#home">Home</a></li>
+    <li><a href="index.html#facilities">Facilities</a></li>
+    <li><a href="index.html#plans">Plans</a></li>
+    <li><a href="seats.html">Seats</a></li>
+    <li><a href="index.html#visit">Visit</a></li>
+  </ul>
+  <a class="btn btn-outline drawer-instagram" href="https://instagram.com/echostudyspace" target="_blank" rel="noopener">Instagram</a>
+  <a class="btn btn-gold drawer-whatsapp" href="https://wa.me/919778262436?text=Hi%20ECHO!%20I%27d%20like%20to%20know%20more.">💬 WhatsApp Now</a>
+</aside>
+
+<main class="seats-main">
+  <section class="seats-section">
+    <div class="wrap">
+      <div class="section-head seats-head">
+        <span class="eyebrow">Live Seat Availability</span>
+        <h1 class="seats-title">Find Your Seat at ECHO</h1>
+        <p>Tap a seat number to see when it is free. Updated live from our front desk.</p>
+      </div>
+
+      <!-- ===== Geofence gate ===== -->
+      <div id="geo-panel" class="geo-panel" data-state="checking" role="status" aria-live="polite">
+        <div class="geo-icon" aria-hidden="true">📍</div>
+        <h2 id="geo-title">Checking your location…</h2>
+        <p id="geo-text">Seat availability is shown to visitors within <span class="js-radius">5</span> km of ECHO. Please allow location access when your browser asks.</p>
+        <div class="geo-actions">
+          <button type="button" id="geo-retry" class="btn btn-primary btn-sm" hidden>Check again</button>
+          <a id="geo-wa" class="btn btn-gold btn-sm" hidden href="#">💬 Ask us on WhatsApp</a>
+        </div>
+      </div>
+
+      <!-- ===== Seat map (hidden until geofence passes) ===== -->
+      <div id="seat-app" class="seat-app" hidden>
+        <div id="demo-ribbon" class="demo-ribbon" hidden>Demo data — connect Supabase in <code>config.js</code> to show real seats.</div>
+
+        <div class="seat-topbar">
+          <div class="seat-legend" id="seat-legend" role="group" aria-label="Filter seats by status"></div>
+          <div class="seat-meta">
+            <span id="seat-updated" class="seat-updated"></span>
+            <button type="button" id="seat-refresh" class="btn btn-outline btn-sm">↻ Refresh</button>
+          </div>
+        </div>
+
+        <div id="seat-error" class="seat-error" hidden></div>
+
+        <div class="hall">
+          <div class="hall-label">Study Hall</div>
+          <div id="seat-grid" class="seat-sections" aria-label="Seats by section"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ SEAT DETAIL DIALOG ============ -->
+<dialog id="seat-dialog" class="seat-dialog" aria-labelledby="seat-dialog-title">
+  <div class="seat-dialog-content">
+    <div class="seat-dialog-header">
+      <div>
+        <p class="rules-label">ECHO STUDY SPACE</p>
+        <h2 id="seat-dialog-title">Seat 1</h2>
+      </div>
+      <button type="button" class="rules-close" id="seat-dialog-close" aria-label="Close">&times;</button>
+    </div>
+    <div id="seat-dialog-body" class="seat-dialog-body"></div>
+  </div>
+</dialog>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><img src="images/logo_echo.webp" alt="ECHO LOGO"></div>
+        <p>Education. Concentration. Hard Work. Opportunity. A premium study space designed for focused minds.</p>
+      </div>
+      <div>
+        <h4>Get in Touch</h4>
+        <ul>
+          <li><a href="mailto:echostudyspace@gmail.com">echostudyspace@gmail.com</a></li>
+          <li><a href="https://wa.me/919778262436">WhatsApp</a></li>
+          <li><a href="tel:+919778262436">+91 97782 62436</a></li>
+          <li><a href="https://instagram.com/echostudyspace" target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ECHO Study Space. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="seats.js"></script>
+</body>
+</html>
