@@ -73,6 +73,20 @@
 }
 .seat-error[hidden]{display:none;}
 
+/* key row under the legend: explains the two "ending soon" colours on the map (not clickable) */
+.seat-key{
+  max-width:760px; margin:-4px auto 18px; padding:14px 18px;
+  display:grid; grid-template-columns:1fr 1fr; gap:12px 28px;
+  background:rgba(255,255,255,0.6); border:1px dashed var(--cream-2); border-radius:var(--radius-sm);
+  font-size:.86rem; color:var(--ink-soft);
+}
+.seat-key-title{grid-column:1 / -1; font:800 .72rem 'Nunito',sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-deep);}
+.key-item{display:flex; align-items:flex-start; gap:12px;}
+.key-item .swatch{width:22px; height:22px; border-radius:7px; border:2px solid; flex:0 0 22px; margin-top:1px;}
+.key-text{display:flex; flex-direction:column; gap:1px; line-height:1.35;}
+.key-text b{color:var(--ink); font-size:.92rem;}
+@media (max-width:560px){ .seat-key{grid-template-columns:1fr; gap:10px;} }
+
 /* ---------- hall + grid (5 per row) ---------- */
 .hall{
   max-width:760px; margin:0 auto; background:rgba(255,255,255,0.72);
