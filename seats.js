@@ -18,7 +18,7 @@
     reserved:      { label: 'Reserved' },
     maintenance:   { label: 'Maintenance' }
   };
-  var STATUS_ORDER = ['available', 'free_today', 'partial', 'expiring_soon', 'expiring_next', 'occupied', 'reserved', 'maintenance'];
+  var STATUS_ORDER = ['available', 'free_today', 'partial', 'occupied', 'reserved', 'maintenance'];
 
   function $(id) { return document.getElementById(id); }
 
@@ -233,6 +233,9 @@
 
   // a seat the database calls 'available' whose booked member is absent today:
   // booked, but free for today -> shown in its own colour
+  // the grid and legend show only Available / Occupied / Reserved (+ rarer cases):
+  // "expiring soon" and "expiring, next booked" are shown as Occupied. The popup still explains the details.
+  function shown(status) { return (status === 'expiring_soon' || status === 'expiring_next') ? 'occupied' : status; }
   function derive(status, bookings) {
     var onLeave = bookings.some(function (b) { return b.on_leave_today; });
     return (status === 'available' && onLeave) ? 'free_today' : status;
@@ -246,7 +249,8 @@
           seat_no: r.seat_no,
           seat_label: r.seat_label || String(r.seat_no),
           section: r.section || null,
-          status: derive(STATUS[r.status] ? r.status : 'available', Array.isArray(r.bookings) ? r.bookings : []),
+          status: shown(derive(STATUS[r.status] ? r.status : 'available', Array.isArray(r.bookings) ? r.bookings : [])),
+          detail: derive(STATUS[r.status] ? r.status : 'available', Array.isArray(r.bookings) ? r.bookings : []),
           bookings: Array.isArray(r.bookings) ? r.bookings : []
         };
       }).sort(function (a, b) { return a.seat_no - b.seat_no; });
@@ -388,34 +392,35 @@
     body.appendChild(el('span', 'status-pill ' + s.status, STATUS[s.status].label));
 
     var wantsBooking = false;
+    var d = s.detail || s.status;
 
     var onLeave = s.bookings.some(function (b) { return b.on_leave_today; });
 
-    if (s.status === 'available') {
+    if (d === 'available') {
       body.appendChild(el('p', 'seat-note', 'This seat is free right now.'));
       wantsBooking = true;
-    } else if (s.status === 'free_today') {
+    } else if (d === 'free_today') {
       body.appendChild(el('p', 'seat-note', 'This seat is booked, but its member is on leave today, so it is free for today only. Day and hourly plans can use it today.'));
       wantsBooking = true;
       appendBookings(body, s.bookings);
-    } else if (s.status === 'reserved') {
+    } else if (d === 'reserved') {
       body.appendChild(el('p', 'seat-note', 'This seat is reserved. Ask us on WhatsApp if you would like to know when it opens up.'));
-    } else if (s.status === 'maintenance') {
+    } else if (d === 'maintenance') {
       body.appendChild(el('p', 'seat-note', 'This seat is temporarily out of service for maintenance. Please pick another seat.'));
     } else {
       var full = s.bookings.filter(function (b) { return (b.slot || 'Full day') === 'Full day'; });
       var current = full.filter(function (b) { return !b.upcoming; })[0], nextB = full.filter(function (b) { return b.upcoming; })[0];
-      if (s.status === 'partial') {
+      if (d === 'partial') {
         body.appendChild(el('p', 'seat-note', 'Shared seat: the time slots below are taken, other hours are free.'));
         wantsBooking = true;
         appendBookings(body, s.bookings);
       } else {
         var note, free;
-        if (s.status === 'expiring_next') {
+        if (d === 'expiring_next') {
           note = nextB
             ? 'The current plan ends on ' + fmtDate(current.until) + ', but this seat is already booked from ' + fmtDate(nextB.from) + '. It will not be free for the next period.'
             : 'The current plan ends on ' + fmtDate(current.until) + ', and this seat is already reserved for the next period.';
-        } else if (s.status === 'expiring_soon') {
+        } else if (d === 'expiring_soon') {
           note = 'The current plan ends on ' + fmtDate(current.until) + '. Nobody has booked the seat after that, so it becomes free on ' + fmtDate(dayAfter(current.until)) + '.';
           wantsBooking = true;
         } else {
@@ -423,7 +428,7 @@
           wantsBooking = true;
         }
         body.appendChild(el('p', 'seat-note', note));
-        free = appendTimeline(body, s.bookings, s.status === 'expiring_next' && !nextB);
+        free = appendTimeline(body, s.bookings, d === 'expiring_next' && !nextB);
         // any hourly bookings on the same seat are listed as before
         appendBookings(body, s.bookings.filter(function (b) { return (b.slot || 'Full day') !== 'Full day'; }));
       }
