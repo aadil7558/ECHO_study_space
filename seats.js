@@ -233,8 +233,8 @@
 
   // a seat the database calls 'available' whose booked member is absent today:
   // booked, but free for today -> shown in its own colour
-  // the grid and legend show only Available / Occupied / Reserved (+ rarer cases):
-  // "expiring soon" and "expiring, next booked" are shown as Occupied. The popup still explains the details.
+  // The seat map keeps every detailed colour. The summary on top (legend + counts + filter) groups
+  // "expiring soon" and "expiring, next booked" under Occupied.
   function shown(status) { return (status === 'expiring_soon' || status === 'expiring_next') ? 'occupied' : status; }
   function derive(status, bookings) {
     var onLeave = bookings.some(function (b) { return b.on_leave_today; });
@@ -249,7 +249,7 @@
           seat_no: r.seat_no,
           seat_label: r.seat_label || String(r.seat_no),
           section: r.section || null,
-          status: shown(derive(STATUS[r.status] ? r.status : 'available', Array.isArray(r.bookings) ? r.bookings : [])),
+          status: derive(STATUS[r.status] ? r.status : 'available', Array.isArray(r.bookings) ? r.bookings : []),
           detail: derive(STATUS[r.status] ? r.status : 'available', Array.isArray(r.bookings) ? r.bookings : []),
           bookings: Array.isArray(r.bookings) ? r.bookings : []
         };
@@ -280,7 +280,7 @@
      --------------------------------------------------------------- */
   function render() {
     var counts = {};
-    seats.forEach(function (s) { counts[s.status] = (counts[s.status] || 0) + 1; });
+    seats.forEach(function (s) { counts[shown(s.status)] = (counts[shown(s.status)] || 0) + 1; });
 
     var legend = $('seat-legend');
     legend.textContent = '';
@@ -320,7 +320,7 @@
       g.seats.forEach(function (s) {
         var btn = document.createElement('button');
         btn.type = 'button';
-        btn.className = 'seat ' + s.status + (activeFilter && activeFilter !== s.status ? ' dim' : '');
+        btn.className = 'seat ' + s.status + (activeFilter && activeFilter !== shown(s.status) ? ' dim' : '');
         btn.setAttribute('role', 'listitem');
         btn.setAttribute('aria-label', 'Seat ' + s.seat_label + ', ' + STATUS[s.status].label);
         btn.textContent = s.seat_label;
